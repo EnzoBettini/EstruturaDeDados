@@ -1,5 +1,5 @@
-//Para criar uma Fila (FIFO - First In, First Out), a lógica muda: 
-//inserimos sempre no fim e removemos sempre no início. Para isso, usamos dois ponteiros auxiliares.
+//Para criar uma Fila (FIFO - First In, First Out), a lï¿½gica muda: 
+//inserimos sempre no fim e removemos sempre no inï¿½cio. Para isso, usamos dois ponteiros auxiliares.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,15 +17,15 @@ typedef struct tp_produto Produto;
 Produto *inicio = NULL;
 Produto *fim = NULL;
 
-// Inserção (Enqueue): Entra pelo fim
-void inserir(int cod, char n[]) {
+// Inserï¿½ï¿½o (Enqueue): Entra pelo fim
+void inserir(int cod, const char n[]) {
     Produto *novo = (Produto*) malloc(sizeof(Produto));
     novo->codigo = cod;
     strcpy(novo->nome, n);
-    novo->prox = NULL; // O último elemento sempre aponta para NULL
+    novo->prox = NULL; // O ï¿½ltimo elemento sempre aponta para NULL
 
     if (inicio == NULL) {
-        inicio = novo; // Se for o primeiro, é início e fim ao mesmo tempo
+        inicio = novo; // Se for o primeiro, ï¿½ inï¿½cio e fim ao mesmo tempo
     } else {
         fim->prox = novo; // O antigo fim aponta para o novo
     }
@@ -33,34 +33,34 @@ void inserir(int cod, char n[]) {
     printf("Inserido na fila: %s\n", n);
 }
 
-// Remoção (Dequeue): Sai pelo início
+// Remoï¿½ï¿½o (Dequeue): Sai pelo inï¿½cio
 void remover() {
     if (inicio == NULL) {
         printf("Fila vazia!\n");
         return;
     }
-    Produto *aux = inicio; // Guarda o início para liberar depois
+    Produto *aux = inicio; // Guarda o inï¿½cio para liberar depois
     printf("Removendo da fila: %s\n", aux->nome);
     
-    inicio = inicio->prox; // O início agora é o segundo da fila
+    inicio = inicio->prox; // O inï¿½cio agora ï¿½ o segundo da fila
     
     if (inicio == NULL) {
-        fim = NULL; // Se a fila esvaziou, o fim também fica nulo
+        fim = NULL; // Se a fila esvaziou, o fim tambï¿½m fica nulo
     }
     
     free(aux); // Deleta o elemento que saiu
 }
 
 int main() {
-    // Ilustração das operações
-    inserir(10, "Arroz");
-    inserir(20, "Feijão");
-    inserir(30, "Macarrão");
+    // Ilustraï¿½ï¿½o das operaï¿½ï¿½es
+    inserir(10, "Sofa");
+    inserir(20, "Mesa");
+    inserir(30, "Cadeira");
 
-    printf("\nEstado: O primeiro a sair será o Arroz (FIFO)\n\n");
+    printf("\nEstado: O primeiro a sair serï¿½ o Arroz (FIFO)\n\n");
 
     remover(); // Remove Arroz
-    remover(); // Remove Feijão
+    remover(); // Remove Feijï¿½o
 
     return 0;
 }
